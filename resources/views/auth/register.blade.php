@@ -10,7 +10,7 @@
                     <div class="card-body px-lg-5 py-lg-5">
                         @if ($errors->any())
                         <div class="text-center text-muted mb-2">
-                            <h4>Encountered errors</h4>
+                            <h4>Encountered errors {{$errors->any()}}</h4>
                         </div>
 
                         <div class="alert alert-danger mb-4" role="alert">
@@ -20,7 +20,7 @@
                         <div class="text-center text-muted mb-4">
                             <small>Into your data</small>
                         </div>
-                    @endif
+                    @endif 
 
 
 
@@ -31,7 +31,7 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="ni ni-hat-3"></i></span>
                                     </div>
-                                    <input class="form-control" placeholder="Name" type="text"
+                                    <input class="form-control" placeholder="Nombre" type="text"  name="name"
                                         value="{{ old('name') }}" required autocomplete="name" autofocus>
                                 </div>
                             </div>
@@ -41,7 +41,7 @@
                                         <span class="input-group-text"><i class="ni ni-email-83"></i></span>
                                     </div>
                                     <input class="form-control" placeholder="Email" type="email"
-                                        value="{{ old('email') }}" required autocomplete="name" autofocus>
+                                        value="{{ old('email') }}" name="email" required autocomplete="email" autofocus>
                                 </div>
                             </div>
 
@@ -51,7 +51,7 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
                                     </div>
-                                    <input class="form-control" placeholder="Password" type="password" name="password"
+                                    <input class="form-control" placeholder="Password"  type="password" name="password"
                                         required autocomplete="new-password">
                                 </div>
                             </div>
@@ -61,8 +61,8 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
                                     </div>
-                                    <input class="form-control" placeholder="Repeat Password" type="password"
-                                        name="password" required autocomplete="password-confirmation">
+                                    <input class="form-control"  id="password_confirmation" placeholder="Repeat Password" type="password"
+                                        name="password_confirmation" required autocomplete="password-confirmation">
                                 </div>
                             </div>
                             <div class="text-center">
