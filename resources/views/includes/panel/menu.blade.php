@@ -8,7 +8,7 @@
         </a>
     </li>
     <li class="nav-item">
-        <a class="nav-link " href="{{url('/specialities')}}">
+        <a class="nav-link " href="{{url('/categories')}}">
             <i class="ni ni-briefcase-24 text-blue"></i> Specialities
         </a>
     </li>

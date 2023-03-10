@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class SpecialityController extends Controller
+class CategoriesController extends Controller
 {
     public function __construct()
     {
@@ -12,6 +12,10 @@ class SpecialityController extends Controller
     }
     public function index()
     {
-        return view('specialities.index');
+        return view('categories.index');
+    }
+
+    public function create(){
+        return view('categories.create');
     }
 }

@@ -12,7 +12,7 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('/specialities', [App\Http\Controllers\SpecialityController::class, 'index']);
-Route::get('/specialities/create', [App\Http\Controllers\SpecialityController::class, 'create']);
-Route::get('/specialities/{speciality}/edit', [App\Http\Controllers\SpecialityController::class, 'edit']);
-Route::post('/specialities', [App\Http\Controllers\SpecialityController::class, 'senData']);
+Route::get('/categories', [App\Http\Controllers\CategoriesController::class, 'index']);
+Route::get('/categories/create', [App\Http\Controllers\CategoriesController::class, 'create']);
+Route::get('/categories/{category}/edit', [App\Http\Controllers\CategoriesController::class, 'edit']);
+Route::post('/categories', [App\Http\Controllers\CategoriesController::class, 'senData']);

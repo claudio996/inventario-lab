@@ -8,7 +8,7 @@
                     <h3 class="mb-0">Specialities</h3>
                 </div>
                 <div class="col text-right">
-                    <a href="{{ url('/specialities/create') }}" class="btn btn-sm btn-primary">New specialitie</a>
+                    <a href="{{ url('/categories/create') }}" class="btn btn-sm btn-primary">New categories</a>
                 </div>
             </div>
         </div>
@@ -42,4 +42,8 @@
             </table>
         </div>
     </div>
+
+ 
+
+
 @endsection
