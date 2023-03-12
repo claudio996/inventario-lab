@@ -2,24 +2,24 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Article;
 use Illuminate\Http\Request;
-use App\Models\Categorie;
 
-class CategoriesController extends Controller
+class ArticlesController extends Controller
 {
-   protected $categories;
-
+    protected $articles;
     public function __construct()
     {
         $this->middleware('auth');
-        $this->categories = new  Categorie();
+        $this->articles = new Article();
+     
     }
+
     public function index()
     {
-        //
-       $categorie = $this->categories::all();
+        $articles = $this->articles->where('status', 1)->get();
 
-        return view('categories.index', ['category' => $categorie]);
+        return view('articles.index', ['articles' => $articles]);
     }
 
     /**
@@ -28,7 +28,8 @@ class CategoriesController extends Controller
     public function create()
     {
         //
-        return view('categories.create');
+        return view('articles.create');
+
     }
 
     /**
@@ -36,24 +37,16 @@ class CategoriesController extends Controller
      */
     public function store(Request $request)
     {
-    
-        $this->validate($request, [
-            'name' => 'required|max:255',
-            'status' => 'required',
-        ]);
-
-        $this->categories->name = $request->input('name');
-        $this->categories->status =$request->input('status');
-        $this->categories->save();
-        return redirect('categories');
-
-
+        //
     }
 
     /**
      * Display the specified resource.
      */
-    
+    public function show(string $id)
+    {
+        //
+    }
 
     /**
      * Show the form for editing the specified resource.
