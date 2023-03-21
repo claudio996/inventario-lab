@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class Article extends Model
+class Item extends Model
 {
     use HasFactory;
 
@@ -16,7 +16,7 @@ class Article extends Model
         'Description',
         'cantidad',
         'status',
-        'categories_id',
+        'categorie_id',
     ];
 
     public function categorie(): BelongsTo

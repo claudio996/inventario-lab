@@ -4,18 +4,19 @@
 <div class="card shadow">
     <div class="card-header border-0">
         <div class="row align-items-center">
-            
             <div class="col">
-                <h3 class="mb-0">Categories</h3>
-                
+                <h3 class="mb-0">Dependences</h3>
             </div>
+           
             <div class="col text-right">
-                <a href="{{ url('/categories/create') }}" class="btn btn-sm btn-primary">New categories</a>
+                <a href="{{ url('/dependences/create') }}" class="btn btn-sm btn-primary">New dependence</a>
             </div>
 
             <div class="col text-right">
-                <a href="{{ url('/dependences') }}" class="btn btn-sm btn-primary">Dependences</a>
+                <a href="{{ url('/categories') }}" class="btn btn-sm btn-primary">Categories</a>
             </div>
+
+            
 
         </div>
     </div>
@@ -26,28 +27,32 @@
                 <tr>
                     <th scope="col">Id</th>
                     <th scope="col">Name</th>
+                    <th scope="col">type</th>
+                    <th scope="col">Capacity</th>
                     <th scope="col">Status</th>
                     <th scope="col">Options</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
-                    @foreach($category as $cat)
+                    @foreach($dependences as $dep)
                 <tr>
-                    <th>{{$cat->id}}</th>
-                    <th>{{$cat->name}}</th>
-                    <th> @if($cat->status == 1)
-                        <a class="btn btn-success" href="{{ url('categories/update_status', $cat->id) }}" onclick="return confirm('Quiere inactivar esta categoria?')">ACTIVE</a>
+                    <th>{{$dep->id}}</th>
+                    <th>{{$dep->name}}</th>
+                    <th>{{$dep->type}}</th>
+                    <th>{{$dep->capacity}}</th>
+                    <th> @if($dep->status == 1)
+                        <a class="btn btn-success" href="{{ url('dependences/update_status', $dep->id) }}" onclick="return confirm('Quiere inactivar esta categoria?')">ACTIVE</a>
                         @else
-                        <a class="btn btn-warning" href="{{ url('categories/update_status',$cat->id) }}" onclick="return confirm('Quiere activar esta categoria')">INACTIVE</a>
+                        <a class="btn btn-warning" href="{{ url('dependences/update_status',$dep->id) }}" onclick="return confirm('Quiere activar esta categoria')">INACTIVE</a>
                         @endif
                     </th>
                     <td>
-                        <form action="{{ url('categories.delete', $cat->id) }}" method="Post">
-                            <a class="btn btn-primary" href="{{ url('categories/edit',$cat->id) }}">Edit</a>
+                        <form action="{{ url('dependences.delete', $dep->id) }}" method="Post">
+                            <a class="btn btn-primary" href="{{ url('dependences/edit',$dep->id) }}">Edit</a>
                             @csrf
                             @method('DELETE')
-                            <a class="btn btn-danger" href="{{ url('categories/destroy',$cat->id) }}" onclick="return confirm('Quiere eliminar definitivamente esta categoria?')">Delete</a>
+                            <a class="btn btn-danger" href="{{ url('dependences/destroy',$dep->id) }}" onclick="return confirm('Quiere eliminar definitivamente esta categoria?')">Delete</a>
 
                         </form>
 

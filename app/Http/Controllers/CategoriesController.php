@@ -4,10 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Categorie;
+use Illuminate\Support\Facades\DB;
 
 class CategoriesController extends Controller
 {
-   protected $categories;
+    protected $categories;
 
     public function __construct()
     {
@@ -17,65 +18,74 @@ class CategoriesController extends Controller
     public function index()
     {
         //
-       $categorie = $this->categories::all();
+        $categorie = $this->categories::all();
 
         return view('categories.index', ['category' => $categorie]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
+ 
     public function create()
     {
         //
         return view('categories.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
-    
+
         $this->validate($request, [
             'name' => 'required|max:255',
             'status' => 'required',
         ]);
 
         $this->categories->name = $request->input('name');
-        $this->categories->status =$request->input('status');
+        $this->categories->status = $request->input('status');
         $this->categories->save();
         return redirect('categories');
-
-
     }
 
-    /**
-     * Display the specified resource.
-     */
-    
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
+    public function update_status($id)
     {
-        //
+        $categories = DB::table('categories')
+            ->select('status')
+            ->where('id', '=', $id)
+            ->first();
+
+
+        if ($categories->status == '1') {
+            $status = '0';
+        } else {
+            $status = '1';
+        }
+        $values = array('status' => $status);
+        DB::table('categories')->where('id', $id)->update($values);
+        session()->flash('msg', 'categories status has been updated sucesfully');
+        return redirect('categories');
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
+    public function edit($id)
+    {
+        $categories = Categorie::findOrFail($id);
+
+        return view('categories.edit', ['categories' => $categories]);
+    }
+
     public function update(Request $request, string $id)
     {
         //
+        $this->validate($request, [
+            'name' => 'required|max:255',
+        ]);
+
+        $categories = Categorie::find($id);
+        $categories->name = $request->input('name');
+        $categories->update();
+        return redirect('categories');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(string $id)
     {
-        //
+        Categorie::destroy($id);
+        return redirect('categories');
     }
 }

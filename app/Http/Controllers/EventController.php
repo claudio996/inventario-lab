@@ -2,24 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Article;
-use Illuminate\Http\Request;
+use App\Models\Event;
+use App\Http\Requests\StoreEventRequest;
+use App\Http\Requests\UpdateEventRequest;
 
-class ArticlesController extends Controller
+class EventController extends Controller
 {
-    protected $articles;
-    public function __construct()
-    {
-        $this->middleware('auth');
-        $this->articles = new Article();
-     
-    }
-
+    /**
+     * Display a listing of the resource.
+     */
     public function index()
     {
-        $articles = $this->articles->where('status', 1)->get();
-
-        return view('articles.index', ['articles' => $articles]);
+        //
     }
 
     /**
@@ -28,14 +22,12 @@ class ArticlesController extends Controller
     public function create()
     {
         //
-        return view('articles.create');
-
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreEventRequest $request)
     {
         //
     }
@@ -43,7 +35,7 @@ class ArticlesController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Event $event)
     {
         //
     }
@@ -51,7 +43,7 @@ class ArticlesController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Event $event)
     {
         //
     }
@@ -59,7 +51,7 @@ class ArticlesController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(UpdateEventRequest $request, Event $event)
     {
         //
     }
@@ -67,7 +59,7 @@ class ArticlesController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Event $event)
     {
         //
     }

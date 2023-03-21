@@ -1,6 +1,9 @@
 @extends('layouts.panel')
 
 @section('content')
+
+<?php echo $categories ?>
+
 <div class="card shadow">
   <div class="card-header border-0">
     <div class="row align-items-center">
@@ -18,23 +21,15 @@
         </div>
         @endif
 
-        <form action="{{ url('/categories/store') }}" method="POST">
+        <form action="{{ url('categories/update/'.  $categories->id) }}" method="POST">
           @csrf
+          @method('PUT')
+          <input type="hidden" value="{{ $categories->id }}">
           <div class="mb-3">
             <label for="name" class="form-label">Name</label>
-            <input type="text" class="form-control" id="name" name="name" aria-describedby="nameHelp">
+            <input type="text" class="form-control" id="name" value="{{ $categories->name }}" name="name" aria-describedby="nameHelp">
             <div id="emailHelp" class="form-text">Into your name for category</div>
           </div>
-
-          <div class="mb-3">
-            <select class="form-control" aria-label=".form-select-lg example" name="status">
-              <option   disabled>Select status for category</option>
-              <option value="1">ACTIVE</option>
-              <option value="0">INACTIVE</option>
-
-            </select>
-          </div>
-
 
           <button type="submit" class="btn btn-primary">Guardar</button>
         </form>
@@ -45,7 +40,5 @@
   </div>
 
 </div>
-
-
 
 @endsection
